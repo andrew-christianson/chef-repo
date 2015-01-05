@@ -1,3 +1,4 @@
 [Desktop Entry]
-Name=Xsession
-Exec=/etc/X11/Xsession
+Name=MyXmonad
+Exec=/home/andrew/.start-xmonad
+Type=Xsession
