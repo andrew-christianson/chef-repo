@@ -9,3 +9,5 @@
 include_recipe "devbox::packages"
 include_recipe "devbox::user"
 include_recipe "devbox::dotfiles"
+include_recipe "devbox::fonts"
+include_recipe "devbox::emacs-d"
