@@ -6,15 +6,25 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+
+cookbook_file "#{Chef::Config[:file_cache_path]}/ssh4git.sh" do
+  source "ssh4git.sh"
+  owner "root"
+  mode "700"
+  action :create
+end
+
 git "#{Chef::Config[:file_cache_path]}/dotfiles" do
   repository 'git@github.com:andrew-christianson/dotfiles.git'
   user 'root'
-  checkout_branch "master"
+  # checkout_branch "master"
   # mode '0755'
   enable_submodules true
+  ssh_wrapper "#{Chef::Config[:file_cache_path]}/ssh4git.sh"
+  # action :checkout
   action :sync
   not_if { ::File.exists?('/home/andrew/.gitconfig') }
-  notifies :run, 'execute[move-dotfiles]', :immediately
+  notifies :run, 'bash[move-dotfiles]', :immediately
 end
 
 # Dir[ "#{Chef::Config[:file_cache_path]}/dotfiles/**/*" ].each do |curr_path|
@@ -33,19 +43,27 @@ end
 #     action :create
 #   end if File.directory?(curr_path)
 # end
-execute 'move-dotfiles' do
-  command "rsync -a /var/chef/cache/dotfiles/.[^\.]* ."
-  cwd "/home/andrew"
+bash 'move-dotfiles' do
+  user "root"
+ 
+  code <<-EOH 
+  shopt -s dotglob
+  rsync -a /var/chef/cache/dotfiles/* /home/andrew/
+  EOH
+  # cwd "/var/chef/cache/dotfiles/"
   action :run
   notifies :run, 'execute[own-dotfiles]', :immediately
 end
 
+execute 'hoist-df' do
+  command "cp -R -t .. ./.[^\.]*"
+  cwd "/home/andrew/dotfiles"
+  action :nothing
+  notifies :run, 'execute[own-dotfiles]', :immediately
+end
+
+
 execute 'own-dotfiles' do
   command 'chown -R andrew:andrew /home/andrew'
   action :run
-end
-
-service "lightdm" do
-  action :stop
-  action :disable
 end

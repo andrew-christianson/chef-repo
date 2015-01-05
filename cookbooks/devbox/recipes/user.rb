@@ -20,6 +20,12 @@ user "andrew" do
   action :create
 end
 
+user "root" do
+  password "$1$ZBRuBFN1$J2HNU4PKeqychEBfF1clw1"
+  action :manage
+end
+
+
 directory '/home/andrew' do
   user 'andrew'
   group 'andrew'
@@ -28,6 +34,12 @@ end
 directory '/home/andrew/.ssh' do
   user 'andrew'
   group 'andrew'
+  mode '700'
+  action :create
+end
+directory '/root/.ssh' do
+  user 'root'
+  group 'root'
   mode '700'
   action :create
 end
@@ -41,8 +53,6 @@ end
 sudo 'andrew' do
   user "andrew"
 end
-
-
 
 cookbook_file '/root/.ssh/gh_rsa' do
   source "gh_rsa"
