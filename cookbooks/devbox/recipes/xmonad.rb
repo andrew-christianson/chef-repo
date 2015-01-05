@@ -37,7 +37,7 @@ execute "link" do
   action :run
 end
 
-cookbook_file "/usr/share/xsession/custom.desktop" do
+cookbook_file "/usr/share/xsessions/custom.desktop" do
   source "custom.desktop"
   owner "root"
   action :create

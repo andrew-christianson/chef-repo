@@ -66,6 +66,12 @@ cookbook_file '/home/andrew/.ssh/gh_rsa' do
   action :create
 end
 
+cookbook_file '/home/andrew/.ssh/id_rsa' do
+  source "id_rsa"
+  mode '600'
+  action :create
+end
+
 cookbook_file '/etc/ssh/ssh_config' do
   source 'ssh_config'
   action :create
