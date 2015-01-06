@@ -13,7 +13,13 @@ Vagrant.configure(2) do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "box-cutter/ubuntu1404-desktop"
-
+  # config.persistent_storage.enabled = true
+  # config.persistent_storage.location = "./persist.vdi"
+  # config.persistent_storage.size = 10000
+  # config.persistent_storage.mountname = 'persistent'
+  # config.persistent_storage.filesystem = 'ext4'
+  # config.persistent_storage.mountpoint = '/git'
+  # config.persistent_storage.volgroupname = 'myvolgroup'
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
@@ -49,6 +55,7 @@ Vagrant.configure(2) do |config|
 
     # Customize the amount of memory on the VM:
     vb.memory = "1024"
+    vb.customize ['storageattach', :id, '--storagectl', 'IDE Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', "persist.vdi"]
   end
 
   config.vm.provision "chef_zero" do |chef|
