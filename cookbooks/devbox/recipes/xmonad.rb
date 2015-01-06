@@ -31,14 +31,15 @@ execute "xmobar" do
   action :nothing
 end
 
-execute "link" do
-  command "rm -f /home/andrew/.Xsession && ln -s /home/andrew/.xinitrc /home/andrew/.xsession"
-  user "andrew"
-  action :run
-end
+# execute "link" do
+  # command "rm -f /home/andrew/.Xsession && ln -s /home/andrew/.xinitrc /home/andrew/.xsession"
+  # user "andrew"
+  # action :run
+# end
 
 cookbook_file "/usr/share/xsessions/custom.desktop" do
   source "custom.desktop"
   owner "root"
+  mode "777"
   action :create
 end

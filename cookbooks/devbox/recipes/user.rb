@@ -76,3 +76,7 @@ cookbook_file '/etc/ssh/ssh_config' do
   source 'ssh_config'
   action :create
 end
+
+file "/etc/lightdm/lightdm.conf" do
+  action :delete
+end
