@@ -1,4 +1,4 @@
-#
+.#
 # Cookbook Name:: devbox
 # Recipe:: packages
 #
@@ -80,11 +80,25 @@ tree
 graphviz
 mysqlclient
 python-mysqldb
+python-pandas
+python-virtualenv
 libmysqlclient-dev
+libsensors4
+libsensors4-dev
 ).each do |pkg|
   package pkg
 end
 
+
+%w(Glances
+PySensors
+bottle
+virtualenv
+pylint
+pygments
+).each do |pkg|
+  python_pip pkgs
+end
 execute "auto-apt" do
   command "auto-apt update"
   action :run
