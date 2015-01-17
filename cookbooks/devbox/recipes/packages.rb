@@ -78,6 +78,9 @@ dos2unix
 python-numpy
 tree
 graphviz
+mysqlclient
+python-mysqldb
+libmysqlclient-dev
 ).each do |pkg|
   package pkg
 end
