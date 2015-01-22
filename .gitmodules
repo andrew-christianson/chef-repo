@@ -1,3 +1,9 @@
 [submodule "cookbooks/sudo"]
 	path = cookbooks/sudo
 	url = https://github.com/opscode-cookbooks/sudo.git
+[submodule "cookbooks\\apt"]
+	path = cookbooks\\apt
+	url = https://github.com/opscode-cookbooks/apt.git
+[submodule "cookbooks\\apt-repo"]
+	path = cookbooks\\apt-repo
+	url = https://github.com/sometimesfood/chef-apt-repo.git
