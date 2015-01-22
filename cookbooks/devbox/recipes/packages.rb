@@ -18,10 +18,91 @@
 #   action [:mount, :enable]
 # end
 
-%w(wget curl build-essential git xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev r-base r-base-dev emacs erlang zsh autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev libz-dev libreadline-dev libncursesw5-dev libssl-dev libgdbm-dev libsqlite3-dev libbz2-dev python ipython python3 ipython3 python-pip python3-pip slurm tcptrack nethogs rxvt-unicode xmobar suckless-tools xloadimage cabal-install auto-apt libxpm-dev vim libcurl4-openssl-dev feh tree graphviz).each do |pkg|
+ppa "staticfloat/julianightlies"
+ppa "staticfloat/julia-deps"
+ppa "marutter/rrutter"
+
+%w(wget
+curl
+build-essential
+git
+xmonad
+libghc-xmonad-dev
+libghc-xmonad-contrib-dev
+r-base
+r-base-dev
+emacs
+erlang
+zsh
+autoconf
+bison
+build-essential
+libssl-dev
+libyaml-dev
+libreadline6-dev
+zlib1g-dev
+libncurses5-dev
+libffi-dev
+libgdbm3
+libgdbm-dev
+libz-dev
+libreadline-dev
+libncursesw5-dev
+libssl-dev
+libgdbm-dev
+libsqlite3-dev
+libbz2-dev
+python
+ipython
+python3
+ipython3
+python-pip
+python3-pip
+slurm
+tcptrack
+nethogs
+rxvt-unicode
+xmobar
+suckless-tools
+xloadimage
+cabal-install
+auto-apt
+libxpm-dev
+vim
+libcurl4-openssl-dev
+feh
+xcompmgr
+lfm
+clang
+iotop
+iftop
+python-dev
+openjdk-7-jdk
+dos2unix
+python-numpy
+tree
+graphviz
+mysql-client
+python-mysqldb
+python-pandas
+python-virtualenv
+libmysqlclient-dev
+libsensors4
+libsensors4-dev
+).each do |pkg|
   package pkg
 end
 
+
+%w(Glances
+PySensors
+bottle
+virtualenv
+pylint
+pygments
+).each do |pkg|
+  python_pip pkg
+end
 execute "auto-apt" do
   command "auto-apt update"
   action :run

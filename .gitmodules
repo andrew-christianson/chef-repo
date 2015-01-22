@@ -1,9 +1,21 @@
 [submodule "cookbooks/sudo"]
 	path = cookbooks/sudo
 	url = https://github.com/opscode-cookbooks/sudo.git
-[submodule "cookbooks\\apt"]
-	path = cookbooks\\apt
+[submodule "cookbooks/apt"]
+	path = cookbooks/apt
 	url = https://github.com/opscode-cookbooks/apt.git
-[submodule "cookbooks\\apt-repo"]
-	path = cookbooks\\apt-repo
+[submodule "cookbooks/apt-repo"]
+	path = cookbooks/apt-repo
 	url = https://github.com/sometimesfood/chef-apt-repo.git
+[submodule "cookbooks/python"]
+	path = cookbooks/python
+	url = https://github.com/poise/python.git
+[submodule "cookbooks/build-essential"]
+	path = cookbooks/build-essential
+	url = https://github.com/opscode-cookbooks/build-essential.git
+[submodule "cookbooks/yum-epel"]
+	path = cookbooks/yum-epel
+	url = https://github.com/chef-cookbooks/yum-epel.git
+[submodule "cookbooks/yum"]
+	path = cookbooks/yum
+	url = https://github.com/chef-cookbooks/yum.git
