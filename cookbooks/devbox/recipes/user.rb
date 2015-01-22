@@ -6,15 +6,16 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+$user = "andrew"
 
-group "andrew" do
+group $user do
   action :create
 end
 
-user "andrew" do
+user $user do
   shell "/bin/zsh"
-  gid "andrew"
-  home "/home/andrew"
+  gid $user
+  home "/home/#{$user}"
   password "$1$xN0FU/zW$hXBoXcEN8cEaSurRkyPxp."
 
   action :create
@@ -26,14 +27,14 @@ user "root" do
 end
 
 
-directory '/home/andrew' do
-  user 'andrew'
-  group 'andrew'
+directory '/home/#{$user}' do
+  user '$user'
+  group '$user'
   action :create
 end
-directory '/home/andrew/.ssh' do
-  user 'andrew'
-  group 'andrew'
+directory '/home/#{$user}/.ssh' do
+  user '$user'
+  group '$user'
   mode '700'
   action :create
 end
@@ -50,8 +51,8 @@ sudo 'vagrant' do
   user 'vagrant'
 end
 
-sudo 'andrew' do
-  user "andrew"
+sudo '#{$user}' do
+  user $user
 end
 
 cookbook_file '/root/.ssh/gh_rsa' do
@@ -60,13 +61,13 @@ cookbook_file '/root/.ssh/gh_rsa' do
   action :create
 end
 
-cookbook_file '/home/andrew/.ssh/gh_rsa' do
+cookbook_file '/home/#{$user}/.ssh/gh_rsa' do
   source "gh_rsa"
   mode '600'
   action :create
 end
 
-cookbook_file '/home/andrew/.ssh/id_rsa' do
+cookbook_file '/home/#{$user}/.ssh/id_rsa' do
   source "id_rsa"
   mode '600'
   action :create

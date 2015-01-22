@@ -19,3 +19,6 @@
 [submodule "cookbooks/yum"]
 	path = cookbooks/yum
 	url = https://github.com/chef-cookbooks/yum.git
+[submodule "cookbooks/cookbook-r"]
+	path = cookbooks/cookbook-r
+	url = https://github.com/stevendanna/cookbook-r

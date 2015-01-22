@@ -13,27 +13,29 @@
 #   action :disable
 # end
 
+$user = "andrew"
+
 execute "cabal-update" do
   command "cabal update"
-  cwd "/home/andrew"
-  environment "HOME" => "/home/andrew"
-  user "andrew"
-  not_if { ::File.exists?('/home/andrew/.cabal/bin/xmobar') }
+  cwd "/home/#{$user}"
+  environment "HOME" => "/home/#{$user}"
+  user "#{$user}"
+  not_if { ::File.exists?('/home/#{$user}/.cabal/bin/xmobar') }
   notifies :run, 'execute[xmobar]', :immediately
 end
 
 execute "xmobar" do
   command "cabal install xmobar"
-  cwd "/home/andrew"
-  environment "HOME" => "/home/andrew"
-  user "andrew"
-  not_if { ::File.exists?('/home/andrew/.cabal/bin/xmobar') }
+  cwd "/home/#{$user}"
+  environment "HOME" => "/home/#{$user}"
+  user "#{$user}"
+  not_if { ::File.exists?('/home/#{$user}/.cabal/bin/xmobar') }
   action :nothing
 end
 
 # execute "link" do
-  # command "rm -f /home/andrew/.Xsession && ln -s /home/andrew/.xinitrc /home/andrew/.xsession"
-  # user "andrew"
+  # command "rm -f /home/#{$user}/.Xsession && ln -s /home/#{$user}/.xinitrc /home/#{$user}/.xsession"
+  # user "#{$user}"
   # action :run
 # end
 

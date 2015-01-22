@@ -17,12 +17,15 @@
 #   fstype "ext4"
 #   action [:mount, :enable]
 # end
+ %w(staticfloat/julianightlies
+ staticfloat/julia-deps
+ marutter/rrutter
+ webupd8team/sublime-text-3
+ webupd8team/atom).each do |repo|
+  ppa repo
+end
 
-ppa "staticfloat/julianightlies"
-ppa "staticfloat/julia-deps"
-ppa "marutter/rrutter"
-
-%w(wget
+ %w(wget
 curl
 build-essential
 git
@@ -89,6 +92,9 @@ python-virtualenv
 libmysqlclient-dev
 libsensors4
 libsensors4-dev
+julia
+sublime-text-installer
+atom
 ).each do |pkg|
   package pkg
 end
@@ -103,8 +109,25 @@ pygments
 ).each do |pkg|
   python_pip pkg
 end
+
 execute "auto-apt" do
   command "auto-apt update"
   action :run
   not_if {::File.exists?('/var/cache/auto-apt')}
+end
+
+%w(fortunes
+caret
+ggplot2
+dplyr
+plyr
+pryr
+devtools
+testthat
+roxygen2
+randomForest
+xlsx
+
+).each do |pkg|
+  r_package pkg
 end
