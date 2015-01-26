@@ -22,3 +22,12 @@
 [submodule "cookbooks/cookbook-r"]
 	path = cookbooks/cookbook-r
 	url = https://github.com/stevendanna/cookbook-r
+[submodule "cookbooks/ark"]
+	path = cookbooks/ark
+	url = https://github.com/burtlo/ark.git
+[submodule "cookbooks/readline"]
+	path = cookbooks/readline
+	url = https://github.com/atomic-penguin/cookbook-readline.git
+[submodule "cookbooks/r"]
+	path = cookbooks/r
+	url = https://github.com/stevendanna/cookbook-r.git

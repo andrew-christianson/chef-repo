@@ -12,13 +12,8 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "box-cutter/ubuntu1404-desktop"
-  config.persistent_storage.enabled = true
-  config.persistent_storage.location = "test.vdi"
-  config.persistent_storage.size = 10000
-  config.persistent_storage.mountname = 'test'
-  config.persistent_storage.filesystem = 'ext4'
-  config.persistent_storage.mountpoint = '/test'
+  config.vm.box = "chef/ubuntu-14.04"
+
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
@@ -62,6 +57,7 @@ Vagrant.configure(2) do |config|
     chef.cookbooks_path = "cookbooks"
     # chef.nodes_path = "chef/nodes"
     chef.roles_path = "roles"
+    chef.add_recipe "r::default"
     chef.add_recipe "devbox::default"
     chef.verbose_logging = true
   end

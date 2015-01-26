@@ -20,7 +20,7 @@ execute "cabal-update" do
   cwd "/home/#{$user}"
   environment "HOME" => "/home/#{$user}"
   user "#{$user}"
-  not_if { ::File.exists?('/home/#{$user}/.cabal/bin/xmobar') }
+  not_if { ::File.exists?("/home/#{$user}/.cabal/bin/xmobar") }
   notifies :run, 'execute[xmobar]', :immediately
 end
 
@@ -29,7 +29,7 @@ execute "xmobar" do
   cwd "/home/#{$user}"
   environment "HOME" => "/home/#{$user}"
   user "#{$user}"
-  not_if { ::File.exists?('/home/#{$user}/.cabal/bin/xmobar') }
+  not_if { ::File.exists?("/home/#{$user}/.cabal/bin/xmobar") }
   action :nothing
 end
 

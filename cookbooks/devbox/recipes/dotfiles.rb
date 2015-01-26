@@ -25,7 +25,7 @@ git "#{Chef::Config[:file_cache_path]}/dotfiles" do
   ssh_wrapper "#{Chef::Config[:file_cache_path]}/ssh4git.sh"
   # action :checkout
   action :sync
-  not_if { ::File.exists?('/home/#{$user}/.gitconfig') }
+  not_if { ::File.exists?("/home/#{$user}/.gitconfig") }
   notifies :run, 'bash[move-dotfiles]', :immediately
 end
 
@@ -50,6 +50,6 @@ end
 
 
 execute 'own-dotfiles' do
-  command 'chown -R #{$user}:#{$user} /home/#{$user}'
+  command "chown -R #{$user}:#{$user} /home/#{$user}"
   action :run
 end

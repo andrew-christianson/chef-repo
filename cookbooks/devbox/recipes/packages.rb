@@ -12,11 +12,12 @@
 #   action :create
 # end
 
-# mount "/git" do
-#   device "/dev/sdb1"
-#   fstype "ext4"
-#   action [:mount, :enable]
-# end
+mount "/git" do
+  device "/dev/sdb1"
+  fstype "ext4"
+  action [:mount, :enable]
+end
+
  %w(staticfloat/julianightlies
  staticfloat/julia-deps
  marutter/rrutter
@@ -27,7 +28,11 @@ end
 
  %w(wget
 curl
+ubuntu-desktop
 build-essential
+virtualbox-guest-dkms
+virtualbox-guest-utils
+virtualbox-guest-x11
 git
 xmonad
 libghc-xmonad-dev
@@ -95,6 +100,7 @@ libsensors4-dev
 julia
 sublime-text-installer
 atom
+silversearcher-ag
 ).each do |pkg|
   package pkg
 end
@@ -116,6 +122,8 @@ execute "auto-apt" do
   not_if {::File.exists?('/var/cache/auto-apt')}
 end
 
+chef_gem "rinruby"
+
 %w(fortunes
 caret
 ggplot2
@@ -127,7 +135,6 @@ testthat
 roxygen2
 randomForest
 xlsx
-
 ).each do |pkg|
   r_package pkg
 end

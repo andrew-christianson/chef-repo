@@ -27,14 +27,14 @@ user "root" do
 end
 
 
-directory '/home/#{$user}' do
-  user '$user'
-  group '$user'
+directory "/home/#{$user}" do
+  user "#{$user}"
+  group "#{$user}"
   action :create
 end
-directory '/home/#{$user}/.ssh' do
-  user '$user'
-  group '$user'
+directory "/home/#{$user}/.ssh" do
+  user "#{$user}"
+  group "#{$user}"
   mode '700'
   action :create
 end
@@ -51,7 +51,7 @@ sudo 'vagrant' do
   user 'vagrant'
 end
 
-sudo '#{$user}' do
+sudo "#{$user}" do
   user $user
 end
 
@@ -61,13 +61,13 @@ cookbook_file '/root/.ssh/gh_rsa' do
   action :create
 end
 
-cookbook_file '/home/#{$user}/.ssh/gh_rsa' do
+cookbook_file "/home/#{$user}/.ssh/gh_rsa" do
   source "gh_rsa"
   mode '600'
   action :create
 end
 
-cookbook_file '/home/#{$user}/.ssh/id_rsa' do
+cookbook_file "/home/#{$user}/.ssh/id_rsa" do
   source "id_rsa"
   mode '600'
   action :create
