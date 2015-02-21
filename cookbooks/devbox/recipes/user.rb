@@ -26,6 +26,18 @@ user "root" do
   action :manage
 end
 
+directory "/git" do
+  user $user
+  group $user
+  action :create
+end
+
+mount "/git" do
+  device "/dev/sdb1"
+  fstype "ext4"
+  action [:mount, :enable]
+end
+
 
 directory "/home/#{$user}" do
   user "#{$user}"

@@ -12,17 +12,14 @@
 #   action :create
 # end
 
-mount "/git" do
-  device "/dev/sdb1"
-  fstype "ext4"
-  action [:mount, :enable]
-end
 
- %w(staticfloat/julianightlies
+
+%w(staticfloat/julianightlies
  staticfloat/julia-deps
  marutter/rrutter
  webupd8team/sublime-text-3
- webupd8team/atom).each do |repo|
+ webupd8team/atom
+ git-core/ppa).each do |repo|
   ppa repo
 end
 
@@ -98,9 +95,8 @@ libmysqlclient-dev
 libsensors4
 libsensors4-dev
 julia
-sublime-text-installer
-atom
 silversearcher-ag
+nfs-client
 ).each do |pkg|
   package pkg
 end
